@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="tester.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LogPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">dumps_dir/data.log</Value>
+    </Setting>
+    <Setting Name="LineRegex" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">^([A-Fa-f0-9]{6}) \((\d+) \/ (\d+)\)</Value>
+    </Setting>
+    <Setting Name="BinFileMask" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">dumps_dir/dump_{0:X6}.bin</Value>
+    </Setting>
+    <Setting Name="CmpFileMask" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">dumps_dir/dump_{0:X6}_cmp.bin</Value>
+    </Setting>
+    <Setting Name="DecFileMask" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">dumps_dir/dump_{0:X6}_dec.bin</Value>
+    </Setting>
+    <Setting Name="ToolFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">tool.exe</Value>
+    </Setting>
+    <Setting Name="ToolFileArgsCmpMask" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{0} {1} c</Value>
+    </Setting>
+    <Setting Name="ToolFileArgsDecMask" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{0} {1} d 0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
