@@ -97,9 +97,27 @@ namespace tester
                     exe.Start();
                     exe.WaitForExit(1000 * 60 * 5);
 
-                    bool bin_cmp_equal = FilesContentsAreEqual(new FileInfo(bin_file), new FileInfo(dec_file));
-
                     Console.Write("[{0:000}, {1:X6}]: ", i, addr);
+
+                    bool bin_cmp_equal = false;
+                    if (File.Exists(bin_file))
+                    {
+                        if (File.Exists(dec_file))
+                        {
+                            bin_cmp_equal = FilesContentsAreEqual(new FileInfo(bin_file), new FileInfo(dec_file));
+                        }
+                        else
+                        {
+                            Console.WriteLine(string.Format("cannot find file! ({0})", Path.GetFileName(dec_file)));
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine(string.Format("cannot find file! ({0})", Path.GetFileName(bin_file)));
+                        continue;
+                    }
+
                     if (!bin_cmp_equal)
                     {
                         Console.WriteLine("files are not equal!");
