@@ -66,6 +66,13 @@ namespace tester
         static void Main(string[] args)
         {
             List<string> lines = new List<string>();
+
+            if (!File.Exists(Settings.Default.LogPath))
+            {
+                Console.WriteLine(string.Format("Error: Cannot find log-file: {0}", Path.GetFileName(Settings.Default.LogPath)));
+                return;
+            }
+
             lines.AddRange(File.ReadAllLines(Settings.Default.LogPath));
 
             Regex regex = new Regex(Settings.Default.LineRegex);
@@ -86,6 +93,14 @@ namespace tester
                     Process exe = new Process();
                     exe.StartInfo.UseShellExecute = false;
                     exe.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    exe.StartInfo.RedirectStandardOutput = true;
+
+                    if (!File.Exists(Settings.Default.ToolFile))
+                    {
+                        Console.WriteLine(string.Format("Error: Cannot find tool-file: {0}", Path.GetFileName(Settings.Default.ToolFile)));
+                        return;
+                    }
+
                     exe.StartInfo.FileName = Settings.Default.ToolFile;
                     exe.StartInfo.Arguments = string.Format(Settings.Default.ToolFileArgsCmpMask, bin_file, cmp_file);
                     exe.Start();
